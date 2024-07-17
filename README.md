@@ -46,68 +46,68 @@ This example takes a sample executable called "Test.exe" and loads the ".text" s
 
 ### Output
 ```
-0x00000000: 55                      PUSH   EBP
-0x00000001: 8B EC                   MOV    EBP, ESP
-0x00000003: 6A FF                   PUSH   FFh
-0x00000005: 68 F2 7C 43 00          PUSH   00437CF2h
-0x0000000A: 64 A1 00 00 00 00       MOV    EAX, FS:00000000h
-0x00000010: 50                      PUSH   EAX
-0x00000011: 81 EC E8 00 00 00       SUB    ESP, 000000E8h
-0x00000017: 53                      PUSH   EBX
-0x00000018: 56                      PUSH   ESI
-0x00000019: 57                      PUSH   EDI
-0x0000001A: 51                      PUSH   ECX
-0x0000001B: 8D BD 0C FF FF FF       LEA    EDI, [EBP + FFFFFF0Ch]
-0x00000021: B9 3A 00 00 00          MOV    ECX, 0000003Ah
-0x00000026: B8 CC CC CC CC          MOV    EAX, CCCCCCCCh
-0x0000002B: F3 AB                   STOS   ES:[EDI], EAX
-0x0000002D: 59                      POP    ECX
-0x0000002E: A1 30 45 44 00          MOV    EAX, DS:00444530h
-0x00000033: 33 C5                   XOR    EAX, EBP
-0x00000035: 50                      PUSH   EAX
-0x00000036: 8D 45 F4                LEA    EAX, [EBP + F4h]
-0x00000039: 64 A3 00 00 00 00       MOV    FS:00000000h, EAX
-0x0000003F: 89 4D EC                MOV    DWORD PTR [EBP + ECh], ECX
-0x00000042: 6A 18                   PUSH   18h
-0x00000044: E8 BC DD FE FF          CALL   FFFEDE05h
-0x00000049: 83 C4 04                ADD    ESP, 04h
-0x0000004C: 89 85 14 FF FF FF       MOV    DWORD PTR [EBP + FFFFFF14h], EAX
-0x00000052: C7 45 FC 00 00 00 00    MOV    DWORD PTR [EBP + FCh], 00000000h
-0x00000059: 83 BD 14 FF FF FF 00    CMP    DWORD PTR [EBP + FFFFFF14h], 00h
-0x00000060: 74 2E                   JZ     90h
-0x00000062: 6A 18                   PUSH   18h
-0x00000064: 8B 8D 14 FF FF FF       MOV    ECX, DWORD PTR [EBP + FFFFFF14h]
-0x0000006A: E8 4D E0 FE FF          CALL   FFFEE0BCh
-0x0000006F: 8B 45 EC                MOV    EAX, DWORD PTR [EBP + ECh]
-0x00000072: 8B 08                   MOV    ECX, DWORD PTR [EAX]
-0x00000074: 51                      PUSH   ECX
-0x00000075: 8B 55 0C                MOV    EDX, DWORD PTR [EBP + 0Ch]
-0x00000078: 52                      PUSH   EDX
-0x00000079: 8B 45 08                MOV    EAX, DWORD PTR [EBP + 08h]
-0x0000007C: 50                      PUSH   EAX
-0x0000007D: 8B 8D 14 FF FF FF       MOV    ECX, DWORD PTR [EBP + FFFFFF14h]
-0x00000083: E8 A7 E0 FE FF          CALL   FFFEE12Fh
-0x00000088: 89 85 0C FF FF FF       MOV    DWORD PTR [EBP + FFFFFF0Ch], EAX
-0x0000008E: EB 0A                   JMP    9Ah
-0x00000090: C7 85 0C FF FF FF 00 +  MOV    DWORD PTR [EBP + FFFFFF0Ch], 00000000h
-0x0000009A: 8B 8D 0C FF FF FF       MOV    ECX, DWORD PTR [EBP + FFFFFF0Ch]
-0x000000A0: 89 8D 20 FF FF FF       MOV    DWORD PTR [EBP + FFFFFF20h], ECX
-0x000000A6: C7 45 FC FF FF FF FF    MOV    DWORD PTR [EBP + FCh], FFFFFFFFh
-0x000000AD: 8B 55 EC                MOV    EDX, DWORD PTR [EBP + ECh]
-0x000000B0: 8B 85 20 FF FF FF       MOV    EAX, DWORD PTR [EBP + FFFFFF20h]
-0x000000B6: 89 42 20                MOV    DWORD PTR [EDX + 20h], EAX
-0x000000B9: 8B 4D F4                MOV    ECX, DWORD PTR [EBP + F4h]
-0x000000BC: 64 89 0D 00 00 00 00    MOV    DWORD PTR FS:[00000000h], ECX
-0x000000C3: 59                      POP    ECX
-0x000000C4: 5F                      POP    EDI
-0x000000C5: 5E                      POP    ESI
-0x000000C6: 5B                      POP    EBX
-0x000000C7: 81 C4 F4 00 00 00       ADD    ESP, 000000F4h
-0x000000CD: 3B EC                   CMP    EBP, ESP
-0x000000CF: E8 30 D9 FE FF          CALL   FFFEDA04h
-0x000000D4: 8B E5                   MOV    ESP, EBP
-0x000000D6: 5D                      POP    EBP
-0x000000D7: C2 08 00                RET    0008h
+0x00000000: 55                      push   ebp
+0x00000001: 8B EC                   mov    ebp, esp
+0x00000003: 6A FF                   push   FFh
+0x00000005: 68 F2 7C 43 00          push   00437CF2h
+0x0000000A: 64 A1 00 00 00 00       mov    eax, fs:00000000h
+0x00000010: 50                      push   eax
+0x00000011: 81 EC E8 00 00 00       sub    esp, 000000E8h
+0x00000017: 53                      push   ebx
+0x00000018: 56                      push   esi
+0x00000019: 57                      push   edi
+0x0000001A: 51                      push   ecx
+0x0000001B: 8D BD 0C FF FF FF       lea    edi, [ebp + FFFFFF0Ch]
+0x00000021: B9 3A 00 00 00          mov    ecx, 0000003Ah
+0x00000026: B8 CC CC CC CC          mov    eax, CCCCCCCCh
+0x0000002B: F3 AB                   stos   es:[edi], eax
+0x0000002D: 59                      pop    ecx
+0x0000002E: A1 30 45 44 00          mov    eax, ds:00444530h
+0x00000033: 33 C5                   xor    eax, ebp
+0x00000035: 50                      push   eax
+0x00000036: 8D 45 F4                lea    eax, [ebp + F4h]
+0x00000039: 64 A3 00 00 00 00       mov    fs:00000000h, eax
+0x0000003F: 89 4D EC                mov    dword ptr [ebp + ECh], ecx
+0x00000042: 6A 18                   push   18h
+0x00000044: E8 BC DD FE FF          call   FFFEDE05h
+0x00000049: 83 C4 04                add    esp, 04h
+0x0000004C: 89 85 14 FF FF FF       mov    dword ptr [ebp + FFFFFF14h], eax
+0x00000052: C7 45 FC 00 00 00 00    mov    dword ptr [ebp + FCh], 00000000h
+0x00000059: 83 BD 14 FF FF FF 00    cmp    dword ptr [ebp + FFFFFF14h], 00h
+0x00000060: 74 2E                   jz     90h
+0x00000062: 6A 18                   push   18h
+0x00000064: 8B 8D 14 FF FF FF       mov    ecx, dword ptr [ebp + FFFFFF14h]
+0x0000006A: E8 4D E0 FE FF          call   FFFEE0BCh
+0x0000006F: 8B 45 EC                mov    eax, dword ptr [ebp + ECh]
+0x00000072: 8B 08                   mov    ecx, dword ptr [eax]
+0x00000074: 51                      push   ecx
+0x00000075: 8B 55 0C                mov    edx, dword ptr [ebp + 0Ch]
+0x00000078: 52                      push   edx
+0x00000079: 8B 45 08                mov    eax, dword ptr [ebp + 08h]
+0x0000007C: 50                      push   eax
+0x0000007D: 8B 8D 14 FF FF FF       mov    ecx, dword ptr [ebp + FFFFFF14h]
+0x00000083: E8 A7 E0 FE FF          call   FFFEE12Fh
+0x00000088: 89 85 0C FF FF FF       mov    dword ptr [ebp + FFFFFF0Ch], eax
+0x0000008E: EB 0A                   jmp    9Ah
+0x00000090: C7 85 0C FF FF FF 00 +  mov    dword ptr [ebp + FFFFFF0Ch], 00000000h
+0x0000009A: 8B 8D 0C FF FF FF       mov    ecx, dword ptr [ebp + FFFFFF0Ch]
+0x000000A0: 89 8D 20 FF FF FF       mov    dword ptr [ebp + FFFFFF20h], ecx
+0x000000A6: C7 45 FC FF FF FF FF    mov    dword ptr [ebp + FCh], FFFFFFFFh
+0x000000AD: 8B 55 EC                mov    edx, dword ptr [ebp + ECh]
+0x000000B0: 8B 85 20 FF FF FF       mov    eax, dword ptr [ebp + FFFFFF20h]
+0x000000B6: 89 42 20                mov    dword ptr [edx + 20h], eax
+0x000000B9: 8B 4D F4                mov    ecx, dword ptr [ebp + F4h]
+0x000000BC: 64 89 0D 00 00 00 00    mov    dword ptr fs:[00000000h], ecx
+0x000000C3: 59                      pop    ecx
+0x000000C4: 5F                      pop    edii
+0x000000C5: 5E                      pop    esi
+0x000000C6: 5B                      pop    ebx
+0x000000C7: 81 C4 F4 00 00 00       add    esp, 000000F4h
+0x000000CD: 3B EC                   cmp    ebp, esp
+0x000000CF: E8 30 D9 FE FF          call   FFFEDA04h
+0x000000D4: 8B E5                   mov    esp, ebp
+0x000000D6: 5D                      pop    ebp
+0x000000D7: C2 08 00                ret    0008h
 ```
 Since the executable I selected in the above example went to a jump table, I just picked a random function in "Test.exe" to show as example output.
 ### Output Comparison
@@ -177,3 +177,5 @@ Since the executable I selected in the above example went to a jump table, I jus
       d7:   c2 08 00                ret    0x8
 ```
 Provided is the output from `objdump` to affirm legitimacy.
+
+**Now the case of registers and instructions are lower case**. 
