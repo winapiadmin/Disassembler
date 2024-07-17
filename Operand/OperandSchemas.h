@@ -5,6 +5,9 @@
 
 struct OperandSchema
 {
+	GeneralRegister generalRegister=GeneralRegister::_;
+	SegmentRegister segmentRegister=SegmentRegister::_;
+	Constant constant=Constant::_;
 	OperandSchema() : addressingMethod(AddressingMethod::_), operandSize(Size::_), generalRegister(GeneralRegister::_), segmentRegister(SegmentRegister::_), constant(Constant::_) {};
 
 	OperandSchema(AddressingMethod addressingMethod, Size operandSize) : addressingMethod(addressingMethod), operandSize(operandSize) {};
@@ -17,9 +20,6 @@ struct OperandSchema
 		AddressingMethod addressingMethod;
 		Size operandSize;
 	};
-	GeneralRegister generalRegister;
-	SegmentRegister segmentRegister;
-	Constant constant;
 };
 
 extern const OperandSchema EmptyOperandSchema;

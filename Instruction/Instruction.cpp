@@ -5,6 +5,7 @@
 #include "../DisassemblerFunctions.h"
 #include "../Operator/Operator.h"
 #include "../Operand/Operand.h"
+#include <string>
 
 Instruction::Instruction(byte * opcode, int * index) : opcode(opcode), index(index)
 {
@@ -35,12 +36,14 @@ Instruction::~Instruction()
 	free(operands);
 	free(value);
 }
-
 char * Instruction::GetString()
 {
 	char * output = nullptr;
-
-	Append(&output, "%- 23s ", GetValueString());
+	std::string ss;
+	ss += "%- ";
+	ss += std::to_string(MAXLEN*3-1);
+	ss += "s ";
+	Append(&output, ss.c_str(), GetValueString());
 
 	Append(&output, "%- 6s ", GetOperatorString());
 
@@ -141,7 +144,7 @@ const char * Instruction::GetSegmentPrefixString()
 	else if ((int)prefixes & (int)Prefix::GS)
 		return "GS:";
 	else
-		return "";
+		return "??:";
 }
 
 char * Instruction::GetOperandString(int operand)
@@ -173,8 +176,8 @@ char * Instruction::GetValueString()
 {
 	char * output = nullptr;
 
-	for (int i = 0; i < valueSize && i < 8; i++)
-		if (i < 7)
+	for (int i = 0; i < valueSize && i < MAXLEN; i++)
+		if (i < (MAXLEN-1))
 			Append(&output, "%02X ", value[i]);
 		else
 			Append(&output, "+ ");

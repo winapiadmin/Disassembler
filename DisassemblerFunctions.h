@@ -56,7 +56,7 @@ inline void Append(char ** front, const char * back)
 
 	*front = output;
 }
-inline void Append(char ** front, char * format, dword back)
+inline void Append(char ** front, const char * format, dword back)
 {
 	int frontLength = (*front == nullptr) ? 0 : strlen(*front);
 	int backLength = snprintf(nullptr, 0, format, back);
@@ -72,7 +72,7 @@ inline void Append(char ** front, char * format, dword back)
 	*front = output;
 }
 //'back' must have been allocated using malloc()
-inline void Append(char ** front, char * format, char * back)
+inline void Append(char ** front, const char * format, char * back)
 {
 	int frontLength = (*front == nullptr) ? 0 : strlen(*front);
 	int backLength = snprintf(nullptr, 0, format, back);

@@ -39,8 +39,8 @@ char * ModRegRM::GetString(Operand * operand)
 		Append(&output, GetGeneralRegisterString());
 	else if (HasSegmentRegister())
 		Append(&output, GetSegmentRegisterString());
-	else
-		Append(&output, "ERROR");
+	/*else
+		Append(&output, "ERROR");*/
 
 	return output;
 }
@@ -67,7 +67,7 @@ bool ModRegRM::HasSegmentPrefix()
 
 bool ModRegRM::HasSIB()
 {
-	return (schema.rm == RM::SIB) && !HasAddressPrefix();		
+	return (schema.rm == RM::SIB) && !HasAddressPrefix();
 }
 
 bool ModRegRM::HasDisplacement()
@@ -131,6 +131,7 @@ void ModRegRM::SetModDisplacement()
 			else
 				disp32 = Select<dword>(opcode, index);
 			break;
+        default:break;
 	}
 }
 
@@ -177,7 +178,7 @@ char * ModRegRM::GetModDisplacementString()
 				Append(&output, "%08Xh", disp32);
 			break;
 		default:
-			Append(&output, "ERROR");
+			//Append(&output, "ERROR");
 			break;
 	}
 
@@ -244,7 +245,7 @@ char * ModRegRM::GetModRMString()
 			Append(&output, GetRMRegisterString());
 			break;
 		default:
-			Append(&output, "ERROR");
+			//Append(&output, "ERROR");
 			break;
 	}
 
@@ -275,7 +276,8 @@ const char * ModRegRM::GetRMRegisterString()
 			else
 				return GeneralRegisterString[THIRTYTWO_BIT((int)schema.rm - (int)RM::A)];
 		default:
-			return "ERROR";
+			//return "ERROR";
+			return "??";
 	}
 }
 
@@ -295,7 +297,8 @@ const char * ModRegRM::GetGeneralRegisterString()
 			else
 				return GeneralRegisterString[THIRTYTWO_BIT((int)schema.reg - (int)Reg::A)];
 		default:
-			return "ERROR";
+			//return "ERROR";
+			return "??";
 	}
 }
 
@@ -309,27 +312,27 @@ const char * ModRegRM::GetSizeString()
 	switch (size)
 	{
 		case Size::b:
-			return "BYTE PTR ";
+			return "byte ptr ";
 		case Size::w:
-			return "WORD PTR ";
+			return "word ptr ";
 		case Size::d:
-			return "DWORD PTR ";
+			return "dword ptr ";
 		case Size::v:
 			if (HasOperandPrefix())
-				return "WORD PTR ";
+				return "word ptr ";
 			else
-				return "DWORD PTR ";
+				return "dword ptr ";
 		case Size::a:
 			if (HasOperandPrefix())
-				return "DWORD PTR ";
+				return "dword ptr ";
 			else
-				return "QWORD PTR ";
+				return "qword ptr ";
 		case Size::p:
 			if (HasOperandPrefix())
-				return "FWORD PTR ";
+				return "fword ptr ";
 			else
-				return "DWORD PTR ";
+				return "dword ptr ";
 		default:
-			return "";
+			return "?? ptr ";
 	}
 }

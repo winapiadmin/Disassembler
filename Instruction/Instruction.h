@@ -3,7 +3,12 @@
 
 #include "./InstructionSchemas.h"
 #include "../DisassemblerTypes.h"
-
+//longest opcode is 15 bytes, but reduced due to: most instructions are less than 12
+/*
+    16-bit: LOCK MOV DWORD PTR ES:[EBX+12345678], 12345678
+    64-bit: mov reg, FFFFFFFFFFFFFFFFh
+*/
+#define MAXLEN 15
 class Operator;
 class Operand;
 class ModRegRM;

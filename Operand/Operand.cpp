@@ -46,7 +46,7 @@ char * Operand::GetString()
 	else if (HasFixedConstant())
 		Append(&output, GetFixedConstantString());
 	else
-		Append(&output, "ERROR");
+		Append(&output, "??");
 
 	return output;
 }
@@ -153,6 +153,7 @@ void Operand::SetImmediate()
 			else
 				imm32 = Select<dword>(opcode, index);
 			break;
+        default:break;
 	}
 }
 
@@ -169,6 +170,7 @@ void Operand::SetRelativeDisplacement()
 			else
 				disp32 = Select<dword>(opcode, index) + *index;
 			break;
+        default:break;
 	}
 }
 
@@ -217,7 +219,7 @@ char * Operand::GetImmediateString()
 				Append(&output, "%08Xh", imm32);
 			break;
 		default:
-			Append(&output, "ERROR");
+			Append(&output, "??h");
 			break;
 	}
 
@@ -246,7 +248,7 @@ char * Operand::GetRelativeDisplacementString()
 				Append(&output, "%08Xh", disp32);
 			break;
 		default:
-			Append(&output, "ERROR");
+			//Append(&output, "ERROR");
 			break;
 	}
 
@@ -260,7 +262,7 @@ char * Operand::GetMemoryDisplacementString()
 	if (HasSegmentPrefix())
 		Append(&output, GetSegmentPrefixString());
 	else
-		Append(&output, "DS:");
+		Append(&output, "ds:");
 
 	if (HasAddressPrefix())
 		Append(&output, "%04Xh", disp16);
@@ -311,21 +313,21 @@ char * Operand::GetFixedAddressString()
 			if (HasSegmentPrefix())
 				Append(&output, GetSegmentPrefixString());
 			else
-				Append(&output, "DS:");
+				Append(&output, "ds:");
 
 			if (HasOperandPrefix())
-				Append(&output, "[SI]");
+				Append(&output, "[si]");
 			else
-				Append(&output, "[ESI]");
+				Append(&output, "[esi]");
 			break;
 		case AddressingMethod::Y:
 			if (HasOperandPrefix())
-				Append(&output, "ES:[DI]");
+				Append(&output, "es:[di]");
 			else
-				Append(&output, "ES:[EDI]");
+				Append(&output, "es:[edi]");
 			break;
 		default:
-			Append(&output, "ERROR");
+			//Append(&output, "ERROR");
 			break;
 	}
 
@@ -348,7 +350,7 @@ const char * Operand::GetFixedGeneralRegisterString()
 			else
 				return GeneralRegisterString[THIRTYTWO_BIT((int)schema.generalRegister - (int)GeneralRegister::A)];
 		default:
-			return "ERROR";
+			return "??";
 	}
 }
 
@@ -367,23 +369,23 @@ const char * Operand::GetSizeString()
 	switch (schema.operandSize)
 	{
 		case Size::b:
-			return "BYTE PTR ";
+			return "byte ptr ";
 		case Size::w:
-			return "WORD PTR ";
+			return "word ptr ";
 		case Size::d:
-			return "DWORD PTR ";
+			return "dword ptr ";
 		case Size::v:
 			if (HasOperandPrefix())
-				return "WORD PTR ";
+				return "word ptr ";
 			else
-				return "DWORD PTR ";
+				return "dword ptr ";
 		case Size::a:
 			if (HasOperandPrefix())
-				return "DWORD PTR ";
+				return "dword ptr";
 			else
-				return "QWORD PTR ";
+				return "qword ptr ";
 		default:
-			return "";
+			return "?? ptr ";
 	}
 }
 
